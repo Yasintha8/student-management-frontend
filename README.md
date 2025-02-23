@@ -1,6 +1,6 @@
 # Student Management CRUD Application  <img src="https://github.com/Yasintha8/student-management-frontend/blob/main/public/logo.svg" style="width:50px; height:50px;"/>
 
-This is a full-stack Student Management CRUD Application built using the MERN stack (MongoDB, Express.js, React.js, Node.js). The application allows users to perform CRUD (Create, Read, Update, Delete) operations on student records.
+This is a full-stack Student Management CRUD Application built using the <b>MERN stack</b> (MongoDB, Express.js, React.js, Node.js). The application allows users to perform CRUD (Create, Read, Update, Delete) operations on student records.
 Currently, two official plugins are available:
 
 # 🛠 Technologies Used
