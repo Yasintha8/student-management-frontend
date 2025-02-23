@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaEdit, FaPlus, FaTrashAlt, FaTimes } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -40,13 +42,16 @@ function App() {
       axios.post("https://student-management-backend-xh90.onrender.com/students", newStudent)
         .then(() => {
           setStudents([...students, newStudent]);
-          alert("Student added successfully");
+          toast.success("Student added successfully!");
           setNewStudent({ name: "", date: "", reg: "" });
           setIsModalOpen(false);
         })
-        .catch(() => alert("Error adding student"));
+        .catch(() => toast.error("Error adding student"));
+    } else {
+      toast.warning("Please fill all fields!");
     }
   };
+  
 
   // Open Edit Modal
   const openEditModal = (student) => {
@@ -64,13 +69,15 @@ function App() {
               student.reg === editingStudent.reg ? editingStudent : student
             )
           );
-          alert("Student updated successfully");
+          toast.success("Student updated successfully!");
           setIsEditModalOpen(false);
         })
-        .catch(() => alert("Error updating student"));
+        .catch(() => toast.error("Error updating student"));
+    } else {
+      toast.warning("Please fill all fields!");
     }
   };
-
+  
   // Delete Student
   const deleteStudent = (reg) => {
     if (!confirm("Are you sure you want to delete this student?")) return;
@@ -78,21 +85,23 @@ function App() {
     axios.delete(`https://student-management-backend-xh90.onrender.com/students/${reg}`)
       .then(() => {
         setStudents((prevStudents) => prevStudents.filter((student) => student.reg !== reg));
+        toast.success("Student deleted successfully!");
       })
-      .catch(() => alert("Error deleting student"));
+      .catch(() => toast.error("Error deleting student"));
   };
+  
 
   return (
     <div className="container mx-auto p-4">
+    <ToastContainer position="top-right" autoClose={3000} />
       {/* Add Student Button */}
       <button
-        onClick={() => setIsModalOpen(true)}
-        className="fixed bottom-6 right-6 bg-blue-500 text-white p-3 rounded-full hover:scale-110 transition duration-300"
-      >
-        <FaPlus size={30} />
-      </button>
+      onClick={() => setIsModalOpen(true)}
+      className="fixed bottom-6 right-6 bg-blue-500 text-white p-3 rounded-full hover:scale-110 transition duration-300">
+      <FaPlus size={30} />
+    </button>
 
-      <h2 className="text-xl font-bold text-center mb-4">Student List</h2>
+    <h2 className="text-xl font-bold text-center mb-4">Student List</h2>
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
