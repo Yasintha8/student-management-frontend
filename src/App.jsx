@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { FaEdit, FaPlus, FaTrashAlt, FaTimes } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import bgImage from './assets/images/image.png'; // adjust the path as needed
+
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -86,9 +88,9 @@ function App() {
 
   return (
     <div
-      className="min-h-screen bg-cover bg-center relative"
-      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1523240795612-9a054b0db644')" }}
-    >
+    className="min-h-screen bg-cover bg-center relative"
+    style={{ backgroundImage: `url(${bgImage})` }}
+  >
       <div className="absolute inset-0 bg-black opacity-60 z-0"></div>
       <div className="relative z-10 container mx-auto px-4 py-10 text-white">
         <ToastContainer position="top-right" autoClose={3000} />
